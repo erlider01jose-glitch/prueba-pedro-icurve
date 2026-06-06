@@ -9,7 +9,9 @@ const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
         VerticalAlign, Header } = require('docx');
 
 // ── Firebase init ─────────────────────────────────────────
-const serviceAccount = require('./firebase-key.json');
+const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT
+  ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
+  : require('./firebase-key.json');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
