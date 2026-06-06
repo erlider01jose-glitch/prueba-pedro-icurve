@@ -9,6 +9,10 @@ const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
         VerticalAlign, Header } = require('docx');
 
 // ── Firebase init ─────────────────────────────────────────
+console.log('ENV CHECK:', {
+  hasB64: !!process.env.FIREBASE_SERVICE_ACCOUNT_B64,
+  b64Length: (process.env.FIREBASE_SERVICE_ACCOUNT_B64||'').length
+});
 let serviceAccount;
 if (process.env.FIREBASE_SERVICE_ACCOUNT_B64) {
   serviceAccount = JSON.parse(Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT_B64, 'base64').toString('utf8'));
